@@ -40,17 +40,28 @@ suite('Functional Tests', function () {
             "surname": "Colombo"
           })
         .end(function (err, res) {
-          assert.equal(res.status, 200);
-          assert.equal(res.type, 'application/json');
-          assert.equal(res.body.name, 'Cristoforo');
-          assert.equal(res.body.surname, 'Colombo');
+          assert.equal(res.status, 200, 'response status should be 200');
+          assert.equal(res.type, 'application/json', 'response type should be application/json');
+          assert.equal(res.body.name, 'Cristoforo', 'res.body.name should be Cristoforo');
+          assert.equal(res.body.surname, 'Colombo', 'res.body.name should be Colombo');
           done();
         });
     });
     // #4
     test('Send {surname: "da Verrazzano"}', function (done) {
-      assert.fail();
-      done();
+      chai
+          .request(server)
+          .put('/travellers')
+          .send({
+            "surname": "da Verrazzano"
+          })
+          .end(function (err, res) {
+            assert.equal(res.status, 200, 'response status should be 200');
+            assert.equal(res.type, 'application/json', 'response type should be application/json');
+            assert.equal(res.body.name, 'Giovanni','res.body.name should be Giovanni' );
+            assert.equal(res.body.surname, 'da Verrazzano', 'res.body.name should be da Verrazzano');
+            done();
+          });
     });
   });
 });
