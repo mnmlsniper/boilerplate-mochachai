@@ -71,7 +71,7 @@ Browser.site = 'https://freecodecamp1.herokuapp.com/'; // Your URL here
 
 
 
-suite.skip('Functional Tests with Zombie.js', function () {
+suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
   const browser = new Browser();
   suiteSetup(function(done) {
@@ -97,7 +97,6 @@ suite.skip('Functional Tests with Zombie.js', function () {
           done();
         });
       });
-      done();
     });
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
@@ -109,8 +108,7 @@ suite.skip('Functional Tests with Zombie.js', function () {
           browser.assert.elements('span#dates', 1);
           done();
         });
-      });
-      done();
-    });
+      }); 
   });
+});
 });
